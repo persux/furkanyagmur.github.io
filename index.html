@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yağmur, Beni Affet!</title>
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ff758c, #ffc3a0);
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: glow 2s infinite alternate;
+            margin-top: 20px;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.8);
+            }
+            to {
+                text-shadow: 4px 4px 16px rgba(255, 255, 255, 1);
+            }
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            padding-bottom: 100px;
+        }
+
+        .photo-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .photo-gallery img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        #yes {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #no {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            position: absolute;
+            animation: float 6s infinite;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            transform: scale(0.8);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100%) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: rotate(180deg) scale(1);
+            }
+            100% {
+                transform: translateY(-10%) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        .background-gallery {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0.1;
+        }
+
+        .background-gallery img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            transform: scale(1);
+            transition: transform 1s ease-in-out;
+        }
+
+        .background-gallery img:hover {
+            transform: scale(1.2);
+        }
+
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5rem;
+            color: #ff4d4d;
+            font-weight: bold;
+            font-style: italic;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            display: none;
+            z-index: 1000;
+            animation: showMessage 3s forwards;
+        }
+
+        @keyframes showMessage {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .effect {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            border-radius: 50%;
+            animation: scatter 2s forwards;
+            z-index: 100;
+        }
+
+        @keyframes scatter {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(calc(100vw - 50%), calc(100vh - 50%)) scale(0);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="hearts"></div>
+
+    <div class="background-gallery">
+        <img src="furkan1.jpg" alt="Background Photo 1">
+        <img src="furkan2.jpg" alt="Background Photo 2">
+        <img src="furkan3.jpg" alt="Background Photo 3">
+        <img src="furkan4.jpg" alt="Background Photo 4">
+        <img src="furkan5.jpg" alt="Background Photo 5">
+    </div>
+
+    <div class="container">
+        <h1>Yağmur, Beni Affeder misin?</h1>
+
+        <div class="photo-gallery">
+            <img src="furkan1.jpg" alt="Photo 1">
+            <img src="furkan2.jpg" alt="Photo 2">
+            <img src="furkan3.jpg" alt="Photo 3">
+            <img src="furkan4.jpg" alt="Photo 4">
+            <img src="furkan5.jpg" alt="Photo 5">
+        </div>
+
+        <div class="buttons">
+            <button id="yes">Evet</button>
+            <button id="no">Hayır</button>
+        </div>
+
+        <div id="message" class="message">SENİ ÇOK SEVİYORUM YAĞMUR!</div>
+    </div>
+
+    <script>
+        const yesButton = document.getElementById('yes');
+        const noButton = document.getElementById('no');
+        const heartsContainer = document.querySelector('.hearts');
+        const message = document.getElementById('message');
+
+        yesButton.addEventListener('click', () => {
+            message.style.display = 'block';
+
+            // Kalp efektleri
+            for (let i = 0; i < 50; i++) {
+                const effect = document.createElement('div');
+                effect.classList.add('effect');
+                effect.style.left = `${Math.random() * window.innerWidth}px`;
+                effect.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(effect);
+
+                setTimeout(() => {
+                    effect.remove();
+                }, 2000);
+            }
+        });
+
+        noButton.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        });
+
+        noButton.addEventListener('click', () => {
+            alert('Hayır tuşuna tıklamak imkansız! 😜');
+        });
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 1 + 1 + 's';
+            heartsContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 3000);
+        }
+
+        setInterval(createHeart, 200);
+    </script>
+</body>
+</html>
